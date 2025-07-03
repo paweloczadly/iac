@@ -14,7 +14,7 @@ resource "github_repository" "repo" {
 
   pages {
     source {
-      branch = "main"
+      branch = "gh-pages"
       path   = "/"
     }
   }
