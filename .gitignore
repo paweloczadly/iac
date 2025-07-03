@@ -1,0 +1,35 @@
+# Local Terraform / OpenTofu files
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+
+# Plan output
+*.plan
+
+# CLI configuration
+.terraform/
+.terraform.lock.hcl
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Sensitive / local environment files
+.env
+.env.*
+
+# Ignore private directory if used for secrets / private configs
+private/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.directory
