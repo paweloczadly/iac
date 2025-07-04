@@ -13,6 +13,8 @@ resource "github_repository" "repo" {
   license_template = "mit"
 
   pages {
+    cname = "oczadly.io"
+
     source {
       branch = "gh-pages"
       path   = "/"
