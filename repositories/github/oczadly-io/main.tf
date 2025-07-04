@@ -27,12 +27,7 @@ resource "github_branch" "branch_main" {
   branch     = "main"
 }
 
-resource "github_branch" "branch_develop" {
-  repository = github_repository.repo.name
-  branch     = "develop"
-}
-
 resource "github_branch_default" "repo_default_branch" {
   repository = github_repository.repo.name
-  branch     = github_branch.branch_develop.branch
+  branch     = github_branch.branch_main.branch
 }
