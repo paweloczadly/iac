@@ -1,0 +1,15 @@
+<svg width="100" height="100" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" fill="none" stroke-linejoin="round">
+
+  <polygon points="156,28 92,60 156,92 220,60" fill="#8bc5a7"/>
+  <polygon points="92,60 92,124 156,156 156,92" fill="#7ab898"/>
+  <polygon points="156,92 156,156 220,124 220,60" fill="#63a784"/>
+
+  <polygon points="90,126 26,158 90,190 154,158" fill="#8bc5a7"/>
+  <polygon points="26,158 26,222 90,254 90,190" fill="#7ab898"/>
+  <polygon points="90,190 90,254 154,222 154,158" fill="#63a784"/>
+
+  <polygon points="222,126 158,158 222,190 286,158" fill="#20473f"/>
+  <polygon points="158,158 158,222 222,254 222,190" fill="#204f46"/>
+  <polygon points="222,190 222,254 286,222 286,158" fill="#123b34"/>
+
+</svg>
