@@ -11,8 +11,8 @@ resource "github_repository" "repo" {
   delete_branch_on_merge = true
 
   template {
-    owner      = "paweloczadly"
-    repository = "blog-template"
+    owner                = "paweloczadly"
+    repository           = "blog-template"
     include_all_branches = true
   }
 
