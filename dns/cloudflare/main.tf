@@ -28,3 +28,12 @@ resource "cloudflare_dns_record" "cname_www_oczadly_io" {
   content = "paweloczadly.github.io"
   ttl     = 60
 }
+
+resource "cloudflare_dns_record" "txt_gradle_verification" {
+  zone_id = var.cloudflare_zone_id
+  name    = "gradle-verification"
+  comment = "[OpenTofu/iac] Gradle Plugins verification"
+  type    = "TXT"
+  content = "\"gradle-verification=2DDLSGLSIMTFMOKOLOML252NTGKPG\""
+  ttl     = 60
+}
