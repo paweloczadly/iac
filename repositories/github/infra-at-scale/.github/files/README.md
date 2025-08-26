@@ -2,7 +2,7 @@
   <img src="avatar.png" alt="infra-at-scale" width="180"/>
 </p>
 
-# infra-at-scale
+# Infrastructure at scale
 
 This GitHub organization is the reference implementation for the blog post series **"Infrastructure at scale with Azure and OpenTofu"**, created by [Paweł Oczadły](https://github.com/paweloczadly).
 
