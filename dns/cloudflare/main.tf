@@ -31,7 +31,7 @@ resource "cloudflare_dns_record" "cname_www_oczadly_io" {
 
 resource "cloudflare_dns_record" "txt_gradle_verification" {
   zone_id = var.cloudflare_zone_id
-  name    = "gradle-verification"
+  name    = local.name_oczadly_io
   comment = "[OpenTofu/iac] Gradle Plugins verification"
   type    = "TXT"
   content = "\"gradle-verification=2DDLSGLSIMTFMOKOLOML252NTGKPG\""
