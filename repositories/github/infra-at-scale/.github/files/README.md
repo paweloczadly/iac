@@ -20,6 +20,6 @@ All related articles are published at [https://oczadly.io](https://oczadly.io).
 
 If you'd like to use or contribute to these templates in a professional context, feel free to reach out:
 
-👉 [LinkedIn](https://www.linkedin.com/in/pawel-oczadly/)
+👉 [LinkedIn](https://www.linkedin.com/in/paweloczadly/)
 
 👉 [contact@oczadly.io](mailto:contact@oczadly.io)  
