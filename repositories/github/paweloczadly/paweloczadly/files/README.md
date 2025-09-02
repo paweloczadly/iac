@@ -2,7 +2,7 @@
 
 _Build systems that reduce noise, not just code that works._
 
-**Platform Engineer**, **Gradler**. **Blogger**.
+**Platform Engineer**. **Gradler**. **Blogger**.
 
 ---
 
