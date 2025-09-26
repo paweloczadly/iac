@@ -19,8 +19,7 @@ Some of the open-source work I am focusing on:
 | NAME | DESCRIPTION | VERSION |
 | ---- | ----------- | ------- |
 [gradle-springinitializr-plugin](https://github.com/paweloczadly/gradle-springinitializr-plugin) | Production-ready Gradle plugin to bootstrap Spring Boot projects. | [![Latest Release](https://img.shields.io/github/v/release/paweloczadly/gradle-springinitializr-plugin?label=release)](https://github.com/paweloczadly/gradle-springinitializr-plugin/releases/latest) |
-[organization-template](https://github.com/infra-at-scale/organization-template) | Minimal Azure organization IaC using OpenTofu and AVM. | [![Latest Release](https://img.shields.io/github/v/release/infra-at-scale/organization-template?label=release)](https://github.com/infra-at-scale/organization-template/releases/latest)
- |
+[organization-template](https://github.com/infra-at-scale/organization-template) | Minimal Azure organization IaC using OpenTofu and AVM. | [![Latest Release](https://img.shields.io/github/v/release/infra-at-scale/organization-template?label=release)](https://github.com/infra-at-scale/organization-template/releases/latest) |
 
 ---
 
