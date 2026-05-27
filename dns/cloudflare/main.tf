@@ -29,6 +29,15 @@ resource "cloudflare_dns_record" "cname_www_oczadly_io" {
   ttl     = 60
 }
 
+resource "cloudflare_dns_record" "cname_talks_oczadly_io" {
+  zone_id = var.cloudflare_zone_id
+  name    = "talks"
+  comment = "[OpenTofu/iac] GitHub CNAME record to paweloczadly.github.io"
+  type    = "CNAME"
+  content = "paweloczadly.github.io"
+  ttl     = 60
+}
+
 resource "cloudflare_dns_record" "txt_gradle_verification" {
   zone_id = var.cloudflare_zone_id
   name    = local.name_oczadly_io
