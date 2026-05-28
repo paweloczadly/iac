@@ -20,9 +20,9 @@ resource "cloudflare_dns_record" "a_oczadly_io" {
   ttl     = 3600
 }
 
-resource "cloudflare_dns_record" "cname_km_oczadly_io" {
+resource "cloudflare_dns_record" "cname_gpx_oczadly_io" {
   zone_id = var.cloudflare_zone_id
-  name    = "km"
+  name    = "gpx"
   comment = "[OpenTofu/iac] GitHub CNAME record to paweloczadly.github.io"
   type    = "CNAME"
   content = "paweloczadly.github.io"
