@@ -20,9 +20,9 @@ resource "cloudflare_dns_record" "a_oczadly_io" {
   ttl     = 3600
 }
 
-resource "cloudflare_dns_record" "cname_www_oczadly_io" {
+resource "cloudflare_dns_record" "cname_km_oczadly_io" {
   zone_id = var.cloudflare_zone_id
-  name    = "www"
+  name    = "km"
   comment = "[OpenTofu/iac] GitHub CNAME record to paweloczadly.github.io"
   type    = "CNAME"
   content = "paweloczadly.github.io"
@@ -32,6 +32,15 @@ resource "cloudflare_dns_record" "cname_www_oczadly_io" {
 resource "cloudflare_dns_record" "cname_talks_oczadly_io" {
   zone_id = var.cloudflare_zone_id
   name    = "talks"
+  comment = "[OpenTofu/iac] GitHub CNAME record to paweloczadly.github.io"
+  type    = "CNAME"
+  content = "paweloczadly.github.io"
+  ttl     = 60
+}
+
+resource "cloudflare_dns_record" "cname_www_oczadly_io" {
+  zone_id = var.cloudflare_zone_id
+  name    = "www"
   comment = "[OpenTofu/iac] GitHub CNAME record to paweloczadly.github.io"
   type    = "CNAME"
   content = "paweloczadly.github.io"
