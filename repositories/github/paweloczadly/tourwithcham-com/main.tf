@@ -31,6 +31,7 @@ resource "github_repository_file" "site_asset" {
   for_each = setunion(
     fileset("${path.module}/files/assets", "*.jpg"),
     fileset("${path.module}/files/assets", "*.jpeg"),
+    fileset("${path.module}/files/assets", "*.png"),
   )
 
   repository = github_repository.repo.name
