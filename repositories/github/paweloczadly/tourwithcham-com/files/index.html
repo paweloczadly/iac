@@ -282,6 +282,15 @@
         background: var(--background);
       }
 
+      .contact-logo {
+        width: clamp(130px, 35%, 180px);
+        aspect-ratio: 1;
+        margin: 0 auto 1.7rem;
+        border: 2px solid var(--border);
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
       .contact-card h3 { margin-bottom: 1.4rem; color: var(--accent-soft); font-size: 1.3rem; }
 
       .contact-item {
@@ -304,6 +313,26 @@
       }
 
       .contact-item:hover, .contact-item:focus-visible { color: var(--accent-hover); }
+
+      .contact-item .instagram-handle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        color: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        letter-spacing: normal;
+        text-transform: none;
+      }
+
+      .instagram-handle svg {
+        display: block;
+        width: 1.05rem;
+        height: 1.05rem;
+        flex: 0 0 auto;
+        opacity: 0.68;
+      }
 
       .site-footer {
         padding: 2rem 0;
@@ -464,9 +493,21 @@
             <div class="actions"><a class="button" href="https://wa.me/94778595165">Message on WhatsApp</a></div>
           </div>
           <aside class="contact-card" aria-label="Contact details">
-            <h3>Chamara Surname</h3>
-            <a class="contact-item" href="tel:+94778595165"><span>Phone and WhatsApp</span>+94 77 859 5165</a>
+            <img class="contact-logo" src="assets/logo.jpeg" alt="Tour with Cham logo" loading="lazy">
+            <h3>Chamara Zoysa</h3>
+            <a class="contact-item" href="tel:0094754821828"><span>Phone and WhatsApp</span>0094754821828</a>
             <a class="contact-item" href="mailto:cnilanka87@gmail.com"><span>Email</span>cnilanka87@gmail.com</a>
+            <a class="contact-item" href="https://www.instagram.com/tour.with.cham/" target="_blank" rel="noopener noreferrer">
+              <span>Instagram</span>
+              <span class="instagram-handle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.4" cy="6.6" r="0.8" fill="currentColor" stroke="none"></circle>
+                </svg>
+                @tour.with.cham
+              </span>
+            </a>
           </aside>
         </div>
       </section>
@@ -474,7 +515,6 @@
 
     <footer class="site-footer">
       <div class="footer-content container">
-        <span>Private tours across Sri Lanka with Chamara.</span>
         <a class="powered-by" href="https://oczadly.io" rel="noopener noreferrer">Powered by <strong>oczadly<span>.io</span></strong></a>
       </div>
     </footer>
