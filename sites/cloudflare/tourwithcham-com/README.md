@@ -1,6 +1,6 @@
 # tourwithcham.com
 
-OpenTofu configuration for the `tourwithcham.com` Cloudflare Pages Direct Upload project, custom domain, DNS record, and Turnstile widget.
+OpenTofu configuration for the `tourwithcham.com` Cloudflare Pages Direct Upload project, custom domain, DNS record, Turnstile widget, and inquiry database.
 
 ## Prerequisites
 
@@ -24,6 +24,7 @@ The website repository deploys the static assets with GitHub Actions and Wrangle
 The API token requires the following permissions for the account that owns this project:
 
 - `Account > Cloudflare Pages > Edit`
+- `Account > D1 > Edit`
 - `Account > Turnstile Sites > Edit`
 
 Every push to `main` triggers a production deployment.
@@ -36,3 +37,9 @@ OpenTofu creates a managed Turnstile widget for `tourwithcham.com` and the proje
 - `TURNSTILE_SECRET_KEY`
 
 The secret is stored in OpenTofu state. Keep the state file outside version control and restrict access to it.
+
+## Inquiry database
+
+OpenTofu creates the EU-jurisdiction D1 database `tourwithcham-inquiries` and exposes it to production and preview Pages Functions through the `INQUIRIES_DB` binding. Database schema migrations are versioned and applied by the website repository's deployment workflow.
+
+The GitHub Actions Cloudflare API token requires `Account > D1 > Edit` so the deployment workflow can apply pending migrations before uploading the application.
