@@ -7,6 +7,11 @@ resource "cloudflare_pages_project" "site" {
     preview = {
       compatibility_date = local.compatibility_date
       fail_open          = true
+      d1_databases = {
+        INQUIRIES_DB = {
+          id = cloudflare_d1_database.inquiries.id
+        }
+      }
       env_vars = {
         TURNSTILE_SITE_KEY = {
           type  = "plain_text"
@@ -21,6 +26,11 @@ resource "cloudflare_pages_project" "site" {
     production = {
       compatibility_date = local.compatibility_date
       fail_open          = true
+      d1_databases = {
+        INQUIRIES_DB = {
+          id = cloudflare_d1_database.inquiries.id
+        }
+      }
       env_vars = {
         TURNSTILE_SITE_KEY = {
           type  = "plain_text"
