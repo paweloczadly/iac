@@ -1,6 +1,6 @@
 # tourwithcham.com
 
-OpenTofu configuration for the `tourwithcham.com` Cloudflare Pages Direct Upload project, custom domain, and DNS record.
+OpenTofu configuration for the `tourwithcham.com` Cloudflare Pages Direct Upload project, custom domain, DNS record, and Turnstile widget.
 
 ## Prerequisites
 
@@ -12,8 +12,8 @@ OpenTofu configuration for the `tourwithcham.com` Cloudflare Pages Direct Upload
 
 ```bash
 tofu init
-tofu plan
-tofu apply
+tofu plan -var-file=terraform.local.tfvars
+tofu apply -var-file=terraform.local.tfvars
 ```
 
 The website repository deploys the static assets with GitHub Actions and Wrangler. Configure these GitHub Actions repository secrets:
@@ -21,4 +21,18 @@ The website repository deploys the static assets with GitHub Actions and Wrangle
 - `CLOUDFLARE_ACCOUNT_ID`
 - `CLOUDFLARE_API_TOKEN`
 
-The API token requires `Account > Cloudflare Pages > Edit` for the account that owns this project. Every push to `main` triggers a production deployment.
+The API token requires the following permissions for the account that owns this project:
+
+- `Account > Cloudflare Pages > Edit`
+- `Account > Turnstile Sites > Edit`
+
+Every push to `main` triggers a production deployment.
+
+## Turnstile
+
+OpenTofu creates a managed Turnstile widget for `tourwithcham.com` and the project's `pages.dev` domain. The public site key and sensitive secret key are configured as Pages environment variables for production and preview deployments:
+
+- `TURNSTILE_SITE_KEY`
+- `TURNSTILE_SECRET_KEY`
+
+The secret is stored in OpenTofu state. Keep the state file outside version control and restrict access to it.
