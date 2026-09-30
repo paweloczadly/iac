@@ -1,6 +1,6 @@
 # tourwithcham.com
 
-OpenTofu configuration for the `tourwithcham.com` Cloudflare Pages Direct Upload project, custom domain, DNS record, Turnstile widget, and inquiry database.
+OpenTofu configuration for the `tourwithcham.com` Cloudflare Pages Direct Upload project, custom domain, DNS record, Turnstile widget, inquiry database, and private review-photo storage.
 
 ## Prerequisites
 
@@ -25,9 +25,13 @@ The API token requires the following permissions for the account that owns this 
 
 - `Account > Cloudflare Pages > Edit`
 - `Account > D1 > Edit`
+- `Account > Workers R2 Storage > Edit`
 - `Account > Turnstile Sites > Edit`
+- `Zone > Zone Settings > Edit`
 
 Every push to `main` triggers a production deployment.
+
+OpenTofu sets the zone Browser Cache TTL to `Respect Existing Headers`. This allows Pages `_headers` rules to require revalidation for mutable JavaScript and CSS while retaining the platform cache behavior for images.
 
 ## Turnstile
 
@@ -43,3 +47,11 @@ The secret is stored in OpenTofu state. Keep the state file outside version cont
 OpenTofu creates the EU-jurisdiction D1 database `tourwithcham-inquiries` and exposes it to production and preview Pages Functions through the `INQUIRIES_DB` binding. Database schema migrations are versioned and applied by the website repository's deployment workflow.
 
 The GitHub Actions Cloudflare API token requires `Account > D1 > Edit` so the deployment workflow can apply pending migrations before uploading the application.
+
+## Review photo storage
+
+OpenTofu creates the EU-jurisdiction R2 bucket `tourwithcham-review-photos` and exposes it to production and preview Pages Functions through the `REVIEW_PHOTOS` binding.
+
+The bucket has no public custom domain or `r2.dev` configuration. Review photos remain private objects and are returned only by the website function after it confirms that the corresponding review is approved in D1.
+
+The API token used by OpenTofu requires `Account > Workers R2 Storage > Edit`. Application deployments do not upload objects and therefore do not require R2 write permission in the GitHub Actions deployment token.

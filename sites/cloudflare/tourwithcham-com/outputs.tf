@@ -18,6 +18,11 @@ output "inquiries_database_name" {
   value       = cloudflare_d1_database.inquiries.name
 }
 
+output "review_photos_bucket_name" {
+  description = "Name of the private R2 bucket that stores customer review photos."
+  value       = cloudflare_r2_bucket.review_photos.name
+}
+
 output "turnstile_sitekey" {
   description = "Public site key for the inquiry Turnstile widget."
   value       = cloudflare_turnstile_widget.inquiry.sitekey

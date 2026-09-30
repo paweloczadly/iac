@@ -12,6 +12,12 @@ resource "cloudflare_pages_project" "site" {
           id = cloudflare_d1_database.inquiries.id
         }
       }
+      r2_buckets = {
+        REVIEW_PHOTOS = {
+          name         = cloudflare_r2_bucket.review_photos.name
+          jurisdiction = cloudflare_r2_bucket.review_photos.jurisdiction
+        }
+      }
       env_vars = {
         TURNSTILE_SITE_KEY = {
           type  = "plain_text"
@@ -29,6 +35,12 @@ resource "cloudflare_pages_project" "site" {
       d1_databases = {
         INQUIRIES_DB = {
           id = cloudflare_d1_database.inquiries.id
+        }
+      }
+      r2_buckets = {
+        REVIEW_PHOTOS = {
+          name         = cloudflare_r2_bucket.review_photos.name
+          jurisdiction = cloudflare_r2_bucket.review_photos.jurisdiction
         }
       }
       env_vars = {
