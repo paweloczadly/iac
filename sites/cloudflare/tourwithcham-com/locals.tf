@@ -6,4 +6,5 @@ locals {
   inquiries_database    = "tourwithcham-inquiries"
   review_photos_bucket  = "tourwithcham-review-photos"
   turnstile_widget_name = "tourwithcham-inquiry"
+  inquiry_email_address = "bookings@${local.domain}"
 }
