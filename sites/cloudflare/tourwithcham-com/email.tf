@@ -49,6 +49,17 @@ resource "resend_api_key" "pages" {
   domain_id  = resend_domain.site.id
 }
 
+# Resend exposes an API key token only in the create response. Preserve that
+# write-only value in state so refreshing resend_api_key cannot empty the Pages
+# environment variable during a later, unrelated project update.
+resource "terraform_data" "resend_pages_api_key_token" {
+  input = resend_api_key.pages.token
+
+  lifecycle {
+    ignore_changes = [input]
+  }
+}
+
 resource "cloudflare_dns_record" "resend" {
   for_each = var.enable_resend_domain_verification ? {
     for record in resend_domain.site.records :
