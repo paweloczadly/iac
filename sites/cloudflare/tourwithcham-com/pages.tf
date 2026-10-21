@@ -27,6 +27,22 @@ resource "cloudflare_pages_project" "site" {
           type  = "secret_text"
           value = cloudflare_turnstile_widget.inquiry.secret
         }
+        RESEND_API_KEY = {
+          type  = "secret_text"
+          value = resend_api_key.pages.token
+        }
+        INQUIRY_EMAIL_FROM = {
+          type  = "plain_text"
+          value = "Tour with Cham <${local.inquiry_email_address}>"
+        }
+        INQUIRY_REPLY_TO = {
+          type  = "plain_text"
+          value = local.inquiry_email_address
+        }
+        INQUIRY_NOTIFICATION_TO = {
+          type  = "plain_text"
+          value = join(",", sort(tolist(var.notification_recipients)))
+        }
       }
     }
     production = {
@@ -51,6 +67,22 @@ resource "cloudflare_pages_project" "site" {
         TURNSTILE_SECRET_KEY = {
           type  = "secret_text"
           value = cloudflare_turnstile_widget.inquiry.secret
+        }
+        RESEND_API_KEY = {
+          type  = "secret_text"
+          value = resend_api_key.pages.token
+        }
+        INQUIRY_EMAIL_FROM = {
+          type  = "plain_text"
+          value = "Tour with Cham <${local.inquiry_email_address}>"
+        }
+        INQUIRY_REPLY_TO = {
+          type  = "plain_text"
+          value = local.inquiry_email_address
+        }
+        INQUIRY_NOTIFICATION_TO = {
+          type  = "plain_text"
+          value = join(",", sort(tolist(var.notification_recipients)))
         }
       }
     }

@@ -12,6 +12,7 @@ crash.*.log
 # CLI configuration
 .terraform/
 .terraform.lock.hcl
+!sites/cloudflare/tourwithcham-com/.terraform.lock.hcl
 
 # Ignore override files
 override.tf

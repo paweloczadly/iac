@@ -6,7 +6,15 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 5.22.0"
     }
+    resend = {
+      source  = "y0n0zawa/resend"
+      version = "~> 1.0.1"
+    }
   }
 }
 
 provider "cloudflare" {}
+
+provider "resend" {
+  api_key = var.resend_api_key
+}
