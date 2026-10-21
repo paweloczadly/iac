@@ -28,8 +28,12 @@ resource "cloudflare_pages_project" "site" {
           value = cloudflare_turnstile_widget.inquiry.secret
         }
         RESEND_API_KEY = {
-          type  = "secret_text"
-          value = resend_api_key.pages.token
+          # Pages returns secret_text values redacted. A later in-place project
+          # update can therefore overwrite this generated, write-only token
+          # with an empty value. This key is domain-scoped and send-only, so we
+          # keep it as plain_text to make subsequent applies idempotent.
+          type  = "plain_text"
+          value = terraform_data.resend_pages_api_key_token.output
         }
         INQUIRY_EMAIL_FROM = {
           type  = "plain_text"
@@ -69,8 +73,9 @@ resource "cloudflare_pages_project" "site" {
           value = cloudflare_turnstile_widget.inquiry.secret
         }
         RESEND_API_KEY = {
-          type  = "secret_text"
-          value = resend_api_key.pages.token
+          # See the preview configuration above for why this is plain_text.
+          type  = "plain_text"
+          value = terraform_data.resend_pages_api_key_token.output
         }
         INQUIRY_EMAIL_FROM = {
           type  = "plain_text"
