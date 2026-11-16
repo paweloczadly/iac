@@ -57,6 +57,11 @@ resource "terraform_data" "resend_pages_api_key_token" {
 
   lifecycle {
     ignore_changes = [input]
+
+    # Resend returns the token only when the API key is created. Recreate this
+    # state-backed copy whenever the key is replaced so both Pages projects
+    # receive the new token instead of retaining the revoked one.
+    replace_triggered_by = [resend_api_key.pages.id]
   }
 }
 
