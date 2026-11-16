@@ -8,6 +8,16 @@ output "site_url" {
   value       = "https://${local.domain}"
 }
 
+output "staging_url" {
+  description = "Stable Pages URL used before the optional custom staging domain is enabled."
+  value       = "https://${local.staging_pages_domain}"
+}
+
+output "staging_custom_url" {
+  description = "Custom staging URL; null until enable_staging_custom_domain is enabled."
+  value       = var.enable_staging_custom_domain ? "https://${local.staging_domain}" : null
+}
+
 output "inquiries_database_id" {
   description = "ID of the D1 database that stores tour inquiries."
   value       = cloudflare_d1_database.inquiries.id
@@ -18,14 +28,29 @@ output "inquiries_database_name" {
   value       = cloudflare_d1_database.inquiries.name
 }
 
+output "staging_inquiries_database_name" {
+  description = "Name of the isolated D1 database used by preview and staging deployments."
+  value       = cloudflare_d1_database.staging_inquiries.name
+}
+
 output "review_photos_bucket_name" {
   description = "Name of the private R2 bucket that stores customer review photos."
   value       = cloudflare_r2_bucket.review_photos.name
 }
 
+output "staging_review_photos_bucket_name" {
+  description = "Name of the isolated R2 bucket used by preview and staging deployments."
+  value       = cloudflare_r2_bucket.staging_review_photos.name
+}
+
 output "turnstile_sitekey" {
   description = "Public site key for the inquiry Turnstile widget."
   value       = cloudflare_turnstile_widget.inquiry.sitekey
+}
+
+output "staging_turnstile_sitekey" {
+  description = "Turnstile site key used by the live staging environment."
+  value       = cloudflare_turnstile_widget.staging_inquiry.sitekey
 }
 
 output "inquiry_email_address" {

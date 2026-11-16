@@ -76,6 +76,14 @@ For Email Routing on the zone apex, the `cloudflare_email_routing_dns` resource 
 
 The Pages runtime receives these values from OpenTofu in production and preview: `RESEND_API_KEY`, `INQUIRY_EMAIL_FROM`, `INQUIRY_REPLY_TO`, and `INQUIRY_NOTIFICATION_TO`. `notification_recipients` controls the comma-separated list passed to `INQUIRY_NOTIFICATION_TO`; by default both `paweloczadly@gmail.com` and `cnilanka87@gmail.com` receive inquiry and review notifications. This is intentionally separate from `inquiry_notification_destination`, which remains the single verified mailbox used by Cloudflare Email Routing. Email delivery remains best-effort and never removes an inquiry already stored in D1.
 
+The separate `tourwithcham-com-staging` Pages project is isolated from production. It uses `tourwithcham-inquiries-staging`, `tourwithcham-review-photos-staging`, its own live Turnstile widget restricted to the staging hostnames, and `DEPLOYMENT_ENVIRONMENT=staging`. `EMAIL_RECIPIENT_OVERRIDE` forces every message to `staging_email_recipient`, which defaults to Resend's non-delivering `delivered@resend.dev` test address. Production has no recipient override. Automated staging smoke tests verify that the live widget renders but do not attempt to solve it; complete protected submissions are tested manually.
+
+Cloudflare requires a successful deployment before a custom domain can be attached to a Pages project. Staging has already been bootstrapped. For a new environment, use these two phases:
+
+1. Apply with `enable_staging_custom_domain = false` to create the isolated resources and staging Pages project.
+2. Deploy the application once to `tourwithcham-com-staging` with `--branch=staging`.
+3. Set `enable_staging_custom_domain = true` and apply again to create the proxied CNAME and attach `staging.tourwithcham.com`. The committed default is now `true`; the temporary `false` value is only needed during first bootstrap.
+
 `RESEND_API_KEY` is intentionally a Pages `plain_text` environment variable even though it is sensitive. Cloudflare redacts `secret_text` values when reading a Pages project, while `cloudflare_pages_project` updates the complete environment-variable map. Resend also exposes a newly generated API key token only once. The `terraform_data.resend_pages_api_key_token` resource therefore preserves that write-only value in encrypted remote state so a later unrelated apply cannot replace it with an empty value. The injected key has only `sending_access` permission and is restricted to the Tour with Cham domain. The full-access Resend management key remains outside Cloudflare and is supplied to OpenTofu only through `TF_VAR_resend_api_key`.
 
 When first adopting the preserved-token resource for an existing environment whose Pages value is already empty, regenerate the sending key once so the new resource can capture it:
@@ -84,12 +92,12 @@ When first adopting the preserved-token resource for an existing environment who
 tofu apply -var-file=terraform.local.tfvars -replace=resend_api_key.pages
 ```
 
-To rotate the Pages sending key, replace both the Resend key and its preserved token in the same apply:
+To rotate the Pages sending key, replace the Resend key. The preserved token is
+replaced automatically and both Pages projects receive the new value:
 
 ```bash
 tofu apply -var-file=terraform.local.tfvars \
-  -replace=resend_api_key.pages \
-  -replace=terraform_data.resend_pages_api_key_token
+  -replace=resend_api_key.pages
 ```
 
 ## Inquiry database

@@ -7,3 +7,15 @@ resource "cloudflare_dns_record" "site" {
   proxied = true
   ttl     = 1
 }
+
+resource "cloudflare_dns_record" "staging" {
+  count = var.enable_staging_custom_domain ? 1 : 0
+
+  zone_id = var.cloudflare_zone_id
+  name    = local.staging_domain
+  comment = "[OpenTofu/iac] Cloudflare Pages staging environment"
+  type    = "CNAME"
+  content = cloudflare_pages_project.staging.subdomain
+  proxied = true
+  ttl     = 1
+}
